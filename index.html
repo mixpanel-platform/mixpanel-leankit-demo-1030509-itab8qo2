@@ -1,15 +1,577 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
-    <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
-  </head>
-  <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
-    <script>
-      // Run queries and display results here
+    <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"
+    rel="stylesheet">
+    <link href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css"
+    rel="stylesheet" type="text/css">
+    <link href=
+    "https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css"
+    rel="stylesheet" type="text/css">
+    <link href=
+    "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    rel="stylesheet">
+    <script src=
+    "https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js">
     </script>
-  </body>
+    <link crossorigin="anonymous" href=
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity=
+    "sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    rel="stylesheet">
+    <script src=
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+    </script>
+    <style>
+      .content-wrapper > h3, .content-wrapper > .content-heading {
+          font-size: 24px;
+          line-height: 1.1;
+          color: #929292;
+          margin: -15px;
+          margin-bottom: 20px;
+          padding: 15px;
+          font-weight: normal;
+          background-color: #fafbfc;
+          border-bottom: 1px solid #cfdbe2;
+      }
+      .row-table {
+          display: table;
+          table-layout: fixed;
+          height: 100%;
+          width: 100%;
+          margin: 0;
+      }
+      .widget.panel, .widget .panel {
+          overflow: hidden;
+      }
+      
+      .widget {
+          margin-bottom: 20px;
+          border: 0;
+      }
+      
+      .row-table > [class*="col-"] {
+          display: table-cell;
+          float: none;
+          table-layout: fixed;
+          vertical-align: middle;
+      }
+      
+      .pv-lg {
+          padding-top: 15px !important;
+          padding-bottom: 15px !important;
+      }
+      
+      .bg-primary {
+        background-color: #5d9cec;
+        color: #ffffff !important;
+      }
+      
+      
+      .bg-primary-dark {
+        background-color: #2f80e7;
+        color: #ffffff !important;
+      }
+      
+      .bg-purple {
+          background-color: #7266ba;
+          color: #ffffff !important;
+      }
+      
+      .bg-purple-dark {
+          background-color: #564aa3;
+          color: #ffffff !important;
+      }
+      
+      .bg-green {
+          background-color: #37bc9b;
+          color: #ffffff !important;
+      }
+      
+      .bg-green-dark {
+          background-color: #2b957a;
+          color: #ffffff !important;
+      }
+      
+    </style>
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js">
+    </script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js">
+    </script>
+    <link href=
+    "https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.2.4/css/simple-line-icons.min.css"
+    rel="stylesheet" type="text/css">
+    <link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel=
+    "stylesheet" type="text/css">
+
+    <title>
+    </title>
+</head>
+
+<body class="mixpanel-platform-body">
+    <div class="content-wrapper">
+        <div class="content-heading text-center">
+            <!-- START Language list-->
+
+
+            <div class="pull-right" style="bottom: 10px;"><img height="40px"
+            src=
+            "https://d018d7277c9a2a72c253b637c4abe4d24d29449c.googledrive.com/host/0BxwayM8qQaCVOGZvekkxYTNSZVU"
+            width="120px">
+            </div>
+
+
+            <div class="pull-left"><img height="30px" src=
+            "https://dl.dropboxusercontent.com/u/51386401/ct.png" width=
+            "124px">
+            </div>
+            <!-- END Language list    -->
+            CommercialTribe: Real-Time Dashboard <small data-localize=
+            "dashboard.WELCOME"></small>
+        </div>
+        <!-- START widgets box-->
+
+
+        <div class="row">
+            <div class="col-lg-3 col-sm-3">
+                <!-- START widget-->
+
+
+                <div class="panel widget bg-primary">
+                    <div class="row row-table">
+                        <div class=
+                        "col-xs-4 text-center bg-primary-dark pv-lg">
+                            <em class="icon-speedometer fa-3x"></em>
+                        </div>
+
+
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0 current-users text-center">
+                                0
+                            </div>
+
+
+                            <div class="text-uppercase text-center">
+                                Actions Taken Today
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-sm-3">
+                <!-- START widget-->
+
+
+                <div class="panel widget bg-purple">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                            <em class="fa fa-users fa-3x"></em>
+                        </div>
+
+
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0 monthly-actives text-center">
+                                0 <!--<small>GB</small>-->
+                            </div>
+
+
+                            <div class="text-uppercase text-center">
+                                MAU'S
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 col-sm-3">
+                <!-- START widget-->
+
+
+                <div class="panel widget bg-green">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                            <em class="icon-energy fa-3x"></em>
+                        </div>
+
+
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0 daily-actives text-center">
+                                0
+                            </div>
+
+
+                            <div class="text-uppercase text-center">
+                                DAU'S
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-3" style=" width: 200px; /* height: 100px; */">
+                <!-- START date widget-->
+
+
+                <div class="panel widget" style="height: 109px;/* height: 10%; *//* margin-bottom: 0px; */">
+                    <div class="row row-table" style=" height: 10%;">
+                        <div class="col-xs-4 text-center bg-green pv-lg">
+                            <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
+
+
+                            <div class="text-sm date-month text-center" data-format="MMMM" data-now="">JUNE</div>
+                            <br>
+
+
+                            <div class="h2 mt0 date-day text-center" data-format="D" data-now="">6</div>
+                        </div>
+
+
+                        <div class="col-xs-8 pv-lg" style=" /* padding-bottom: 50px; */">
+                            <div class="text-uppercase date-actual-day text-center" data-format="dddd" data-now="">Monday</div>
+                            <br>
+
+
+                            <div class="h2 mt0 date-time" data-format="h:mm" data-now="" style=" margin-top: -10px; padding-bottom: 30px; margin-bottom: -20px;">2:30</div>
+
+
+                            <div class="text-muted text-sm date-pm" data-format="a" data-now="">pm</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END date widget    -->
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        Activity -- Unique Log Ins by Client
+                    </div>
+
+
+                    <div class="panel-body">
+                        <div class="dataTables_wrapper form-inline no-footer"
+                        id="datatable1_wrapper">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="dataTables_length" id=
+                                    "datatable1_length">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-6">
+                                    <div class="dataTables_filter" id=
+                                    "datatable1_filter">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <table aria-describedby="datatable1_info" class=
+                            "table table-striped table-hover dataTable no-footer"
+                            id="datatable1" role="grid">
+                                <thead>
+                                    <tr role="row">
+                                        <th aria-controls="datatable1"
+                                        aria-label=
+                                        "Rendering engine: activate to sort column descending"
+                                        aria-sort="ascending" class=
+                                        "sorting_asc" colspan="1" rowspan="1"
+                                        style="width: 161px;" tabindex="0">Client
+                                        Name</th>
+
+                                        <th aria-controls="datatable1"
+                                        aria-label=
+                                        "Browser: activate to sort column ascending"
+                                        class="sorting" colspan="1" rowspan="1"
+                                        style="width: 237px;" tabindex="0">
+                                        Number of Unique Logins This Week</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                </tbody>
+                            </table>
+
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div aria-live="polite" class=
+                                    "dataTables_info" id="datatable1_info"
+                                    role="status">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-6">
+                                    <div class=
+                                    "dataTables_paginate paging_simple_numbers"
+                                    id="datatable1_paginate">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <style type="text/css">
+    .select_button
+    {
+    height: 30px !important;
+    }
+    </style><!-- demo report -->
+
+
+
+
+    <div id="table">
+    </div>
+    <script>
+      var eventSelect = $('#eventSelect').MPEventSelect();
+      var propSelect  = $('#propSelect').MPPropertySelect();
+      var dateSelect  = $('#dateSelect').MPDatepicker();
+      var eventGraph  = $('#graph').MPChart({chartType: 'line'});
+      var eventTable  = $('#table').MPTable({
+        showPercentages: true,
+        firstColHeader: 'Event'
+      });
+
+      var runQuery = function() {
+        var eventName = eventSelect.MPEventSelect('value'),
+            propName  = propSelect.MPPropertySelect('value'),
+            dateRange = dateSelect.MPDatepicker('value');
+
+        if (eventName) {
+          MP.api.segment(eventName, propName, dateRange).done(function(results) {
+            eventGraph.MPChart('setData', results);
+            eventTable.MPTable('setData', results);
+          });
+        }
+      };
+      eventSelect.on('change', function(e, eventName) {
+        propSelect.MPPropertySelect('setEvent', eventName);
+        $("#by").show();
+        runQuery();
+      });
+      propSelect.on('change', runQuery);
+      dateSelect.on('change', runQuery);
+    </script> <!-- queries for DAUs -->
+     
+    <script>
+        /* Also, she asked about chartbeat style reports (number of simultaneous users). 
+        do you think we could do these with custom reports as well? I imagine it would be just like the number of unique users who sent some selection of events at 
+        least once in the last 5 min, or 10 min, or whatever we decided would be our definition of "simultaneity" */
+        /* Query Segmentation for a Union of events that have happened in the last minute */
+
+        /* Get top events */
+
+        events = [];
+        MP.api.topEvents().done(function(results) {
+          _.each(_.values(results.values()), function(value){
+              events.push(value);
+          })
+          refresh();
+        });
+
+        function toTitleCase(str)
+        {
+          return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        }
+
+        function addCommas(intNum) {
+          return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+        }
+
+        var refresh = function(){
+          /* Get total event counts */
+            var query = MP.api.query('/api/2.0/events/', {event:events, unit: 'day', from:moment().subtract(12, 'days'), to:moment().subtract(10, 'days'), union: 1, type:'unique'}, {dataType: 'json'})
+            query.done(function(json) {
+              var values = json.data.values;
+              var data = _.values(json.data.values)[0];
+
+              /* iterate through the keys in the values dictionary in reverse order.  grab the first and second that have data*/
+              var sortedKeys = _.keys(data)
+
+              /* sort and reverse */
+              sortedKeys.sort()
+              sortedKeys.reverse()
+              var current = 0
+              var lastMinute = 0
+              var count = 0
+
+              while (count <= sortedKeys.length) {
+                  if (data[sortedKeys[count]] > 0) {
+                      console.log(sortedKeys[count])
+                      console.log(sortedKeys[count + 1])
+                      current = data[sortedKeys[count]]
+                      try {
+                          lastMinute = data[sortedKeys[count + 1]]
+                      } catch (err){
+                          lastMinute = data[sortedKeys[0]]
+                      }
+                      break;
+                  }
+                  count ++
+              }
+
+              var totalCurrentUsers = current + lastMinute;
+              $('.current-users').text(addCommas(totalCurrentUsers));
+              /* Show this now */
+
+            })
+            /* Query for Monthly Active Users */
+            var monthlyQuery = MP.api.query('/api/2.0/events/', {event:events, unit: 'month', union: 1, type:'unique'}, {dataType: 'json'}) 
+            monthlyQuery.done(function(json){
+                console.log(json)
+                var data = _.values(json.data.values)
+                var monthlyActives = _.values(data[0])[0]
+
+                $('.monthly-actives').text(addCommas(monthlyActives));
+            });
+
+            var dailyQuery = MP.api.query('/api/2.0/events/', {event:events, unit: 'day', union: 1, interval:1, from:moment().subtract(10, 'days'), to:moment().subtract(8, 'days'), type:'unique'}, {dataType: 'json'});
+            dailyQuery.done(function(json){
+
+                var data = _.values(json.data.values)[0];
+                var dataKeys = _.keys(data).sort().reverse()
+                var dailyActives = data[dataKeys[0]];
+                console.log(dailyActives);
+                $('.daily-actives').text(addCommas(dailyActives));
+            })
+            /* Date Refresh */
+            var date = new Date();
+            var day = date.getDate();
+            var hours = date.getHours();
+            var convertedHours = hours <= 12 ? hours : hours - 12;
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            var time = convertedHours.toString() + ':' + pad(date.getMinutes()).toString();
+            var month = getCurrentMonth();
+            var actualDay = getCurrentDay();
+
+            $('.date-month').text(month);
+            $('.date-actual-day').text(actualDay);
+            $('.date-day').text(day.toString());
+            $('.date-time').text(time);
+            $('.date-pm').text(ampm);
+
+            var pageViewParams = {limit: 25, type:'unique', unit:'day', from: moment().subtract(10, 'days'), to: moment().subtract(2, 'days'), }
+            var pageViewQuery = MP.api.segment('Log In', 'company name', pageViewParams)
+            
+
+            pageViewQuery.done(function(results){
+                console.log("page view query: " + results)
+                var data = {}
+                _.each(_.keys(results.values()), function(key){
+                    /* sum over data in value of results.values()[key] */
+                    var keyData = results.values()[key];
+                    var sortedKeys = _.keys(keyData)
+
+                    /* sort and reverse */
+                    sortedKeys.sort()
+                    sortedKeys.reverse()
+
+                    var current = 0
+                    var lastMinute = 0
+                    var count = 0
+
+                    while (count <= sortedKeys.length) {
+                        if (keyData[sortedKeys[count]] > 0) {
+                            console.log(sortedKeys[count])
+                            console.log(sortedKeys[count + 1])
+                            current = keyData[sortedKeys[count]]
+                            try {
+                                lastMinute = keyData[sortedKeys[count + 1]]
+                            } catch (err){
+                                lastMinute = keyData[sortedKeys[0]]
+                            }
+                            break;
+                        }
+                        count ++
+                    }
+                    
+                    var totalCurrentUsers = current + lastMinute;
+                    data[toTitleCase(key.replace("/ffl/",""))] = totalCurrentUsers
+                });
+
+
+                var table = $('#datatable1').DataTable();
+
+                /* Clear it before we Draw Again */
+
+                table.clear();
+
+                /* Draw new Rows */
+
+                _.each(_.keys(data), function(datum){
+                    table.row.add([datum,data[datum]]).draw(false);
+                });
+
+                /* Sort by second column */
+                table.order([1, 'desc']).draw();
+            });
+
+
+        }
+
+        setInterval(refresh, 30000);
+
+        function pad(d) {
+            return (d < 10) ? '0' + d.toString() : d.toString();
+        }
+
+
+        function getCurrentMonth(){
+
+            var d = new Date();
+
+            var month = new Array();
+            month[0] = "JAN"; 
+            month[1] = "FEB";
+            month[2] = "MAR";
+            month[3] = "APR";
+            month[4] = "MAY";
+            month[5] = "JUNE";
+            month[6] = "JULY";
+            month[7] = "AUG";
+            month[8] = "SEPT";
+            month[9] = "OCT";
+            month[10] = "NOV";
+            month[11] = "DEC";
+            var n = month[d.getMonth()];
+
+            return n;
+        }
+
+        function getCurrentDay(){
+            var d = new Date();
+            var weekday = new Array(7);
+            weekday[0]=  "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+
+            var n = weekday[d.getDay()];
+            return n;
+        }
+
+    </script>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
 </html>

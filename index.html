@@ -469,7 +469,7 @@
             $('.date-pm').text(ampm);
 
             var pageViewParams = {limit: 25, type:'unique', unit:'day', from: moment().subtract(10, 'days'), to: moment().subtract(2, 'days'), }
-            var pageViewQuery = MP.api.segment('Log In', 'company name', pageViewParams)
+            var pageViewQuery = MP.api.segment('Log In', 'companyName', pageViewParams)
             
 
             pageViewQuery.done(function(results){
